@@ -1,0 +1,135 @@
+{{ 'marmeto-marquee.css' |  asset_url |  stylesheet_tag }}
+
+<a href="{{ section.settings.url }}">
+<div class="marmeto-marquee">
+  <div class="marmeto-marquee-content">
+    {% for block in section.blocks %}
+        <div class="marmeto-marquee-tag">{{ block.settings.text }}</div>
+    {% endfor %}
+  </div>
+</div>
+</a>
+
+<style>
+.marmeto-marquee-enclosure {
+    margin-top:{{ section.settings.margin_top }}px;
+    margin-bottom:{{ section.settings.margin_bottom }}px;
+}
+.marmeto-marquee {
+  background: {{ section.settings.background_color }};
+  padding: {{ section.settings.padding_marquee }}px;
+  color: {{ section.settings.font_color }};
+  font-weight: {{section.settings.font_weight}};
+}
+
+.marmeto-marquee-content {
+  animation: marmeto-animate {{ section.settings.text_speed }}s linear infinite running;
+}
+@keyframes marmeto-animate {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+</style>
+
+{% schema %}
+    {
+      "name": "Marmeto Marquee",
+      "tag": "section",
+      "class": "marmeto-marquee-enclosure",
+      "settings": [
+        {
+          "type": "range",
+          "label": "Margin Top",
+          "id": "margin_top",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "label": "Margin Bottom",
+          "id": "margin_bottom",
+          "default": 0,
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "label": "Padding Marquee",
+          "id": "padding_marquee",
+          "default": 0,
+          "min": 0,
+          "max": 20,
+          "step": 1,
+          "unit": "px"
+        },
+        {
+          "type": "range",
+          "label": "Font Weight",
+          "id": "font_weight",
+          "default": 200,
+          "min": 100,
+          "max": 900,
+          "step": 100
+        },
+        
+        {
+          "type": "range",
+          "label": "Text Speed",
+          "id": "text_speed",
+          "default": 10,
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "s"
+        },
+        {
+        "type": "color_background",
+        "label": "Background Color",
+        "id": "background_color",
+        "default": "linear-gradient(-135deg, #008ed9, #8b00db)"
+        },
+        {
+          "type": "color",
+          "label": "Font Color",
+          "id": "font_color",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "url",
+          "label": "Marquee Redirection",
+          "id": "url"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "marquee_text",
+          "name": "Marquee Text",
+          "limit": 15,
+          "settings": [
+            {
+              "type": "text",
+              "label": "Text",
+              "id": "text",
+              "info": "Enter the text here",
+              "placeholder": "Marmeto Marquee"
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "Marmeto Marquee"
+        }
+      ]
+    }
+    {% endschema %}

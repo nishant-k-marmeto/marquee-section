@@ -1,0 +1,33 @@
+.marmeto-marquee-enclosure a{
+  text-decoration: none;
+}
+.marmeto-marquee {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.marmeto-marquee-content {
+  display: flex;
+}
+.marmeto-marquee:hover .marmeto-marquee-content {
+  animation-play-state: paused;
+}
+
+.marmeto-marquee-tag {
+  width: 200px;
+  margin: 0 .5em;
+  padding: .5em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s ease;
+}
+
+.marmeto-marquee-tag:hover {
+  background: rgba(255, 255, 255, .5);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
